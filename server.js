@@ -1,3 +1,5 @@
+var path = require('path')
+
 var express = require('express')
 
 var exphbs = require('express-handlebars')
@@ -26,6 +28,10 @@ app.get('/', function(req, res, next){
     //else{
         next()
     //}
+})
+
+app.get('/AboutUs', function(req, res, next){
+    next()
 })
 
 app.get('/workouts/:exercise', function(req, res, next){
