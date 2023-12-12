@@ -1,7 +1,7 @@
 //var path = require('path')
 
 var express = require('express')
-var exerciseData = require('./data.json')
+var data = require('./data.json')
 var exphbs = require('express-handlebars')
 
 var app = express()
@@ -22,22 +22,17 @@ app.get('/AboutUs', function(req, res, next){
 })
 
 app.get('/workouts/:muscleGroup', function(req, res, next){
-    var  muscleGroup = req.params.muscleGroup
-    var exercises = exerciseData[muscleGroup]
-    // console.log(post)
-    // if(post){
-    //     res.status(200).render("postsPage",{
-    //         allposts: false,
-    //         price: post.price,
-    //         city: post.city,
-    //         condition: post.condition,
-    //         photoURL: post.photoURL,
-    //         description: post.description
-    //     })
-    // }
-    // else{
+    var  muscleGroup = req.params.muscleGroup.toLowerCase()
+    var exerciseData = data[muscleGroup]
+    if(exerciseData){
+        res.status(200).render("MuscleGroupPage",{
+            muscleGroup: exerciseData.muscleGroup,
+            exercises: exerciseData.exercises
+        })
+    }
+    else{
         next()
-    // }
+    }
 })
 
 app.get('*', function (req, res) {
