@@ -1,7 +1,7 @@
-var path = require('path')
+//var path = require('path')
 
 var express = require('express')
-
+var exerciseData = require('./data.json')
 var exphbs = require('express-handlebars')
 
 var app = express()
@@ -11,33 +11,19 @@ app.set("view engine", "handlebars")
 
 var port = process.env.PORT || 3000
 
-app.use(express.static('static'))
+app.use(express.static('public'))
 
-//looking to dynamically generate posts into postsPage.handlebars
-//middleware functions need to figure out how to put data into templates
 app.get('/', function(req, res, next){
-    //if(postData){
-        // console.log(postData)
-        // console.log(postData[0])
-        // res.status(200).render("postsPage", {
-        //     allposts: true,
-        //     posts: postData
-        //assignment 5 stuff^^^^^^^
-       // })
-    //}
-    //else{
-        next()
-    //}
+        res.status(200).render("HomePage")
 })
 
 app.get('/AboutUs', function(req, res, next){
-    next()
+    res.status(200).render("AboutUs")
 })
 
-app.get('/workouts/:exercise', function(req, res, next){
-    //res.status(200).render()
-    // var postNumber = req.params.postNumber
-    // var post = postData[postNumber]
+app.get('/workouts/:muscleGroup', function(req, res, next){
+    var  muscleGroup = req.params.muscleGroup
+    var exercises = exerciseData[muscleGroup]
     // console.log(post)
     // if(post){
     //     res.status(200).render("postsPage",{
@@ -53,8 +39,6 @@ app.get('/workouts/:exercise', function(req, res, next){
         next()
     // }
 })
-
-//CHange below func
 
 app.get('*', function (req, res) {
     res.status(404).render("404Page", {url: req.originalUrl})
