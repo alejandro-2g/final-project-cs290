@@ -1,0 +1,13 @@
+html{
+    scroll-behavior: smooth;
+}
+
+
+.navbar{    
+    width: 100%;
+    background-color: #f8f8f8;
+    color:RED; 
+    
+
+}
+

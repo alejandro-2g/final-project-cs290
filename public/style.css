@@ -2,11 +2,46 @@ html{
     scroll-behavior: smooth;
 }
 
+#Title{
+    text-align: center;
+}
 
 .navbar{    
-    width: 100%;
-    background-color: #f8f8f8;
-    color:RED; 
+    background-color: #34495e;
+   
     
-
 }
+
+.navlist{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navitem{
+    float:left;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+  
+li a {
+    display: block;
+    color: red;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+li a:hover{
+    background-color: white;
+}
+
