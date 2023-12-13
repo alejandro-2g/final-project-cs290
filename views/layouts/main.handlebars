@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Muscle Picker</title>
+    <head>
+        <meta charset="utf-8">
+        <title>Muscle Picker</title>
 
-<link rel="stylesheet" href="/style.css">
-<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script> <!--including handlebras library-->
-<script src="/index.js" charset="utf-8" defer></script>
-<link rel="icon" type="image/x-icon" href="public/favicon2.png">
+        <link rel="stylesheet" href="/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script> <!--including handlebras library-->
+        <script src="/index.js" charset="utf-8" defer></script>
+        <link rel="icon" type="image/x-icon" href="public/favicon2.png">
+    </head>
+    <body>
+        <h1 id="Title">Muscle Picker</h1>
+        <p id="description">This is a website that helps you chose what workouts help a certain
+            muscle group.
+        </p>
+        <nav class="navbar">
+            <ul class="navlist">
+                <li class="navitem"><a href="/">Home</a></li>
+                <li class="navitem"><a href="/aboutUs">About Us</a></li>
+                <li class="navitem right"><a href="/MyPlan">My plan</a></li>
+            </ul>
+        </nav>
 
+        {{{body}}}
 
-
-</head>
-<body>
-	<h1>Muscle Picker</h1>
-    <p>This is a website that helps you chose what workouts help a certain
-        muscle group.
-    </p>
-
-<nav class="navbar">
-    <ul class="navlist">
-        <li class="navitem"><a href="/">Home</a></li>
-        <li class="navitem"><a href="/aboutUs">About Us</a></li>
-        <li class="navitem right"><a href="/MyPlan">My plan</a></li>
-    </ul>
-</nav>
-
-{{{body}}}
-
-</body>
+    </body>
 </html>
