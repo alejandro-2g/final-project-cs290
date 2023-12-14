@@ -1,5 +1,4 @@
-//var path = require('path')
-
+var path = require('path')
 var express = require('express')
 var data = require('./data.json')
 var MyPlanData = require('./MyPlanData.json')
@@ -16,11 +15,23 @@ app.use(express.json())
 app.use(express.static('public'))
 
 app.get('/', function(req, res, next){
-        res.status(200).render("HomePage")
+    res.status(200).render("HomePage")
 })
 
 app.get('/AboutUs', function(req, res, next){
     res.status(200).render("AboutUs")
+})
+
+app.get('/MyPlan', function(req, res, next){
+    if(MyPlanData){
+        res.status(200).render("MyPlanPage", {
+            MyPlanPage: true,
+            exercises: MyPlanData
+         })
+    }
+    else{
+        next()
+    }
 })
 
 app.get('/workouts/:muscleGroup', function(req, res, next){
@@ -28,6 +39,7 @@ app.get('/workouts/:muscleGroup', function(req, res, next){
     var exerciseData = data[muscleGroup]
     if(exerciseData){
         res.status(200).render("MuscleGroupPage",{
+            MyPlanPage: false,
             muscleGroup: exerciseData.muscleGroup,
             exercises: exerciseData.exercises
         })
