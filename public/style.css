@@ -4,7 +4,26 @@ html{
 
 #Title{
     text-align: center;
+    padding-top: 50px;
+	font-size: 50 px;
+	text-align: center;
+    background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fempty-gym&psig=AOvVaw26DWcCH2kHTS3twN_zeBNI&ust=1702707169204000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCJDi8dHkkIMDFQAAAAAdAAAAABAE);
 }
+
+.image {
+    background-image: url(https://www.shutterstock.com/image-illustration/panorama-fitness-center-equipment-strength-260nw-1175972404.jpg);
+    height: 200px;
+}
+
+.header {
+	padding-top: 50px;
+	color: rgb(173, 7, 7);
+	font-size: 80px;
+	text-align: center;
+    
+}
+
+
 
 .navbar{    
     background-color: black;
@@ -128,6 +147,10 @@ p{
 
 .MyPlanButton:hover{
     background-color: white;
+}
+
+.exerciseName{
+    text-align: center;
 }
 
 
