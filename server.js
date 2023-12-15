@@ -59,7 +59,7 @@ app.post('/workouts/:muscleGroup/addMyPlan', function (req, res, next) {
         })
         
         fs.writeFile(
-          "./MyPlanData.json",
+          "/MyPlanData.json",
           JSON.stringify(MyPlanData, null, 2),
           function (err) {
             if (err) {
