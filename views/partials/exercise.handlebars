@@ -3,11 +3,7 @@
         <img src="{{url}}" alt="{{exerciseName}}">
     </div>
     <div class="caption-container">
-        {{#if MyPlanPage}}
-            <button class="MyPlanButton" type="button"> Remove {{exerciseName}} from My Plan</button>
-        {{else}}
-            <button class="MyPlanButton" type="button"> Add {{exerciseName}} to My Plan</button>
-        {{/if}}
+        <button class="MyPlanButton" type="button"> Add/Remove {{exerciseName}} to My Plan</button>
         <h3 class="exerciseName">{{exerciseName}}</h3>
     </div>
 </section>

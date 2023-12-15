@@ -1,5 +1,6 @@
 var path = require('path')
 var express = require('express')
+var fs = require('fs')
 var data = require('./data.json')
 var MyPlanData = require('./MyPlanData.json')
 var exphbs = require('express-handlebars')
@@ -25,8 +26,7 @@ app.get('/AboutUs', function(req, res, next){
 app.get('/MyPlan', function(req, res, next){
     if(MyPlanData){
         res.status(200).render("MyPlanPage", {
-            MyPlanPage: true,
-            exercises: MyPlanData
+            exercises: MyPlanData.MyExercises
          })
     }
     else{
@@ -39,7 +39,6 @@ app.get('/workouts/:muscleGroup', function(req, res, next){
     var exerciseData = data[muscleGroup]
     if(exerciseData){
         res.status(200).render("MuscleGroupPage",{
-            MyPlanPage: false,
             muscleGroup: exerciseData.muscleGroup,
             exercises: exerciseData.exercises
         })
@@ -49,34 +48,34 @@ app.get('/workouts/:muscleGroup', function(req, res, next){
     }
 })
 
-// app.post('/workouts/:muscleGroup/addMyPlan', function (req, res, next) {
-//     var muscleGroup = req.params.muscleGroup.toLowerCase()
-//     var exerciseData = data[muscleGroup]
-//     if (exerciseData) {
-//       if (req.body && req.body.url && req.body.exerciseName) {
-//         MyPlanData.exercises.push({
-//           exerciseName: req.body.exerciseName,
-//           url: req.body.url
-//         })
-  
-//         fs.writeFile(
-//           "./MyPlanData.json",
-//           JSON.stringify(MyPlanData, null, 2),
-//           function (err) {
-//             if (err) {
-//               res.status(500)
-//             } else {
-//               res.status(200)
-//             }
-//           }
-//         )
-//       } else {
-//         res.status(400)
-//       }
-//     } else {
-//       next()
-//     }
-//   })
+app.post('/workouts/:muscleGroup/addMyPlan', function (req, res, next) {
+    var muscleGroup = req.params.muscleGroup.toLowerCase()
+    var exerciseData = data[muscleGroup]
+    if (exerciseData) {
+      if (req.body && req.body.url && req.body.exerciseName) {
+        MyPlanData.MyExercises.push({
+          exerciseName: req.body.exerciseName,
+          url: req.body.url
+        })
+        
+        fs.writeFile(
+          "./MyPlanData.json",
+          JSON.stringify(MyPlanData, null, 2),
+          function (err) {
+            if (err) {
+              res.status(500).send("Server Error")
+            } else {
+              res.status(200).send("Data Saved Successfully.")
+            }
+          }
+        )
+      } else {
+        res.status(400).send("Invalid JSON URL and exercise name")
+      }
+    } else {
+      next()
+    }
+  })
 
 // app.delete('/workouts/:muscleGroup/removeMyPlan', function(req, res, next){
 //     var muscleGroup = req.params.muscleGroup.toLowerCase()
