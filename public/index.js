@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+/* document.addEventListener('DOMContentLoaded', function () {
     // Sample data
     let data = {
         items: []
@@ -29,4 +29,4 @@ document.addEventListener('DOMContentLoaded', function () {
         // Execute the Handlebars template with the data and insert into the container
         itemListContainer.innerHTML = template(data);
     }
-});
+}); */
