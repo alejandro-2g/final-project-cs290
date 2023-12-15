@@ -77,10 +77,29 @@ app.post('/workouts/:muscleGroup/addMyPlan', function (req, res, next) {
     }
   })
 
-// app.delete('/workouts/:muscleGroup/removeMyPlan', function(req, res, next){
-//     var muscleGroup = req.params.muscleGroup.toLowerCase()
-//     var exerciseData = MyPlanData[]
-// })
+app.delete('/:index/removeMyPlan', function(req, res, next){
+  var exerciseIndex = req.params.index
+  if(MyPlanData){
+    if(exerciseIndex >= 0 && exerciseIndex < MyPlanData.MyExercises.length){
+      MyPlanData.MyExercises.splice(exerciseIndex,1)
+      fs.writeFile(
+        "./MyPlanData.json",
+        JSON.stringify(MyPlanData, null, 2),
+        function (err) {
+          if (err) {
+            res.status(500).send("Server Error")
+          } else {
+            res.status(200).send("Data Deleted Successfully.")
+          }
+      })
+    }
+    else{
+      res.status(400).send("Invalid My Plan Index")
+    }
+  }
+  else
+    next()
+})
 
 app.get('*', function (req, res) {
     res.status(404).render("404Page", {url: req.originalUrl})
