@@ -1,27 +1,32 @@
-function openNewPage(pageNumber) {
-    // Define URLs for the new pages
-    const pageUrls = [
-        '/workouts/arms',
-        '/workouts/shoulders',
-        '/workouts/back',
-        '/workouts/legs',
-        '/workouts/chest',
-        '/workouts/core',
+document.addEventListener('DOMContentLoaded', function () {
+    // Sample data
+    let data = {
+        items: []
+    };
 
-    ];
+    // Compile the Handlebars template
+    let templateSource = document.getElementById('exercises-container');
+    let template = Handlebars.compile(templateSource);
 
-    // Get the URL based on the page number
-    const url = pageUrls[pageNumber - 1];
+    // Initial rendering of the list
+    renderList();
 
-    // Open the new page
-    window.location.href = url;
-}
+    // Event listener for the button click
+    document.getElementById('MyPlanButton').addEventListener('click', function () {
+        // Add a new item to the data
+        let newItem = 'New Item ' + (data.items.length + 1);
+        data.items.push(newItem);
 
-// Attach click event listeners to the buttons
-document.getElementById('button').addEventListener('click', function() {
-    openNewPage(1);
-});
+        // Update the list
+        renderList();
+    });
 
-document.getElementById('button').addEventListener('click', function() {
-    openNewPage(2);
+    // Function to render the list using Handlebars
+    function renderList() {
+        // Get the container element
+        let itemListContainer = document.getElementById('exList');
+
+        // Execute the Handlebars template with the data and insert into the container
+        itemListContainer.innerHTML = template(data);
+    }
 });
